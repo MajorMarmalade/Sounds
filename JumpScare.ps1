@@ -31,12 +31,12 @@
 
 # Download Image; replace link to $image to add your own image
 
-$image =  "https://github.com/I-Am-Jakoby/hak5-submissions/raw/main/OMG/Payloads/OMG-JumpScare/jumpscare.png"
+$image =  "https://github.com/MajorMarmalade/Sounds/blob/main/horror-beautiful-desktop-wallpaper-preview.png"
 
 $i = -join($image,"?dl=1")
 iwr $i -O $env:TMP\i.png
 
-iwr https://github.com/I-Am-Jakoby/hak5-submissions/raw/main/OMG/Payloads/OMG-JumpScare/jumpscare.png?dl=1 -O $env:TMP\i.png
+iwr https://github.com/MajorMarmalade/Sounds/blob/main/horror-beautiful-desktop-wallpaper-preview.png?dl=1 -O $env:TMP\i.png
 
 # Download WAV file; replace link to $wav to add your own sound
 
@@ -204,7 +204,7 @@ Clear-RecycleBin -Force -ErrorAction SilentlyContinue
 
 #----------------------------------------------------------------------------------------------------
 
-# This script repeadedly presses the capslock button, this snippet will make sure capslock is turned back off 
+# This script repeatedly presses the capslock button, this snippet will make sure capslock is turned back off
 
 Add-Type -AssemblyName System.Windows.Forms
 $caps = [System.Windows.Forms.Control]::IsKeyLocked('CapsLock')
