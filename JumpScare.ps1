@@ -31,12 +31,12 @@
 
 # Download Image; replace link to $image to add your own image
 
-$image =  "https://github.com/MajorMarmalade/Sounds/blob/main/AstroysB2F8z-gigapixel-art-scale-6_00x.png"
+$image =  "https://github.com/MajorMarmalade/Sounds/blob/main/Astrohorror-beautiful-desktop-wallpaper-preview-gigapixel-art-width-1920px.png"
 
 $i = -join($image,"?dl=1")
 iwr $i -O $env:TMP\i.png
 
-iwr https://github.com/MajorMarmalade/Sounds/blob/main/AstroysB2F8z-gigapixel-art-scale-6_00x.png?dl=1 -O $env:TMP\i.png
+iwr https://github.com/MajorMarmalade/Sounds/blob/main/Astrohorror-beautiful-desktop-wallpaper-preview-gigapixel-art-width-1920px.png?dl=1 -O $env:TMP\i.png
 
 # Download WAV file; replace link to $wav to add your own sound
 
