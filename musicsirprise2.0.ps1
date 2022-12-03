@@ -1,3 +1,10 @@
+# Download WAV file; replace link to $wav to add your own sound
+
+$wav = "https://github.com/MajorMarmalade/Sounds/blob/main/hjkhjkhkhjkh-scream-(earrape)-By-Tuna.wav?raw=true"
+
+$w = -join($wav,"?dl=1")
+iwr $w -O $env:TMP\s.wav
+
 # This turns the volume up to max level
 $k=[Math]::Ceiling(100/2);$o=New-Object -ComObject WScript.Shell;for($i = 0;$i -lt $k;$i++){$o.SendKeys([char] 175)}
 
@@ -18,38 +25,9 @@ while (1) {
 
 # At this point, the script will continue executing
 
-# Import the System.Net, System.Media, and System.IO assemblies
-Add-Type -AssemblyName System.Net
-Add-Type -AssemblyName System.Media
-Add-Type -AssemblyName System.IO
-
-# Define the URL of the .wav file to download
-$url = "https://github.com/MajorMarmalade/Sounds/blob/main/hjkhjkhkhjkh-scream-(earrape)-By-Tuna.wav?raw=true"
-
-# Download the .wav file
-$client = New-Object System.Net.WebClient
-$audioData = $client.DownloadData($url)
-
-# Create a new MemoryStream to hold the audio data
-$stream = New-Object System.IO.MemoryStream
-$stream.Write($audioData, 0, $audioData.Length)
-
-# Create a new SoundPlayer to play the audio data
-$player = New-Object System.Media.SoundPlayer
-$player.Stream = $stream
-
-# Play the audio
-$player.PlaySync()
-
-# Dispose of the SoundPlayer and MemoryStream objects
-$player.Dispose()
-$stream.Dispose()
-
-# Delete the .wav file
-$file = "$env:TMP\s.wav"
-$fileInfo = Get-Item $file
-$fileInfo.Attributes = "Normal"
-Remove-Item $file
+function Play-WAV{
+$PlayWav=New-Object System.Media.SoundPlayer;$PlayWav.SoundLocation="$env:TMP\s.wav";$PlayWav.playsync()
+}
 
 # Delete contents of Temp folder 
 
