@@ -35,6 +35,9 @@ while (1) {
 
 # At this point, the script will continue executing
 
+# Import the System.Windows.Forms library
+Add-Type -AssemblyName System.Windows.Forms
+
 $messageBox = [System.Windows.Forms.MessageBox]
 $messageBox::Show("I'm sorry, friend.", "", "", "for what?")
 
