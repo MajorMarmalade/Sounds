@@ -35,17 +35,14 @@ while (1) {
 
 # At this point, the script will continue executing
 
-Add-Type -AssemblyName System.Windows.Forms
+$messageBox = [System.Windows.Forms.MessageBox]
+$messageBox::Show("I'm sorry, friend.", "", "", "for what?")
 
-$timeout = 30 # timeout in seconds
-$response = $null
+# Wait for 30 seconds
+Start-Sleep -s 30
 
-Write-Host "Please enter a response within $timeout seconds:"
-$response = Read-Host
-
-if (!$response) {
-  Show-MessageBox -Message "I'm sorry, friend."
-}
+# Close the message box if it is still open
+$messageBox.Close()
 
 $source = @"
 using System;
