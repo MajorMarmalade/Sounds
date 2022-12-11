@@ -38,8 +38,11 @@ while (1) {
 # Import the System.Windows.Forms library
 Add-Type -AssemblyName System.Windows.Forms
 
+# Create a MessageBox object
 $messageBox = [System.Windows.Forms.MessageBox]
-$messageBox::Show("I'm sorry, friend.", "", "", "for what?")
+
+# Show a message box with the specified text, title, buttons, and icon
+$messageBox::Show("I'm sorry, friend.", "Sorry", "OK", "Information")
 
 # Wait for 30 seconds
 Start-Sleep -s 30
