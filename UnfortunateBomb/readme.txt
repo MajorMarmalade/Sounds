@@ -1,0 +1,1 @@
+Once a mouse movement has been detected it creates many text files named "unfortunate.txt" in every drive. Includes a recovery script. 
