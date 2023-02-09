@@ -17,10 +17,8 @@ while (1) {
 
 $Speak = New-Object -ComObject SAPI.SpVoice
 
-# Set the volume to 100
-$Volume = [System.Math]::Round((Get-WmiObject -Class Win32_SoundDevice).Volume * 100)
-[System.Math]::Round((Get-WmiObject -Class Win32_SoundDevice).AudioEndpointVolume.Mute = $false)
-[System.Math]::Round((Get-WmiObject -Class Win32_SoundDevice).AudioEndpointVolume.MasterVolumeLevelScalar = 1)
+# This turns the volume up to max level
+$k=[Math]::Ceiling(100/2);$o=New-Object -ComObject WScript.Shell;for($i = 0;$i -lt $k;$i++){$o.SendKeys([char] 175)}
 
 # Define a list of knock knock jokes
 $jokes = @(
