@@ -1,1 +1,3 @@
-Once a mouse movement has been detected it creates many text files named "unfortunate.txt" in every drive. Includes a recovery script. 
+The first script creates text files with names "unfortunateC0.txt", "unfortunateD0.txt", and "unfortunateE0.txt", and writes the string "unfortunate" to each file. The script then increments a counter '$i' and repeats the process, creating new text files with names "unfortunateC1.txt", "unfortunateD1.txt", and "unfortunateE1.txt". This process continues indefinitely.
+
+The second script removes the text files created by the first script. It uses a loop that increments a counter '$i' and deletes the text files with names "unfortunateC$i.txt", "unfortunateD$i.txt", and "unfortunateE$i.txt". The script uses the Remove-Item cmdlet to delete each file from the C, D, and E drives. The loop continues to run for up to 30 seconds, after which it stops.
