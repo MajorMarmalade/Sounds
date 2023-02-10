@@ -1,3 +1,5 @@
+$start = Get-Date
+
 $i = 1
 
 while ($true) {
@@ -19,4 +21,10 @@ while ($true) {
 
     $i++
     Start-Sleep -Milliseconds 50
+
+    # Check if 1 minute has passed
+    $elapsed = (Get-Date) - $start
+    if ($elapsed.TotalMinutes -ge 1) {
+        break
+    }
 }
