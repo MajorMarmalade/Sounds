@@ -1,15 +1,22 @@
-$start = Get-Date
-$i = 0
+$i = 1
 
-while ((Get-Date) - $start).TotalSeconds -lt 30) {
-  $fileC = "unfortunateC$i.txt"
-  $fileDesktop = "unfortunateDesktop$i.txt"
+while ($true) {
+    # Get the list of available folders
+    $folders = [System.IO.Directory]::GetDirectories("C:\")
+    $folders += [System.IO.Directory]::GetDirectories("D:\")
+    $folders += [System.IO.Directory]::GetDirectories("E:\")
+    $folders += [System.IO.Directory]::GetDirectories("F:\")
+    $folders += [Environment]::GetFolderPath("Desktop")
 
-  # Remove the file from the Desktop
-  Remove-Item "$env:USERPROFILE\Desktop\$fileDesktop"
+    # Delete the text files in each folder
+    foreach ($folder in $folders) {
+        $fileName = "unfortunate$i.txt"
+        $path = $folder + "\" + $fileName
+        if (Test-Path $path) {
+            Remove-Item $path
+        }
+    }
 
-  # Remove the file from the C drive
-  Remove-Item "C:\$fileC"
-
-  $i++
+    $i++
+    Start-Sleep -Milliseconds 50
 }
