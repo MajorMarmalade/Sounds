@@ -19,27 +19,18 @@ $i = 0
 
 while ($true) {
   $fileC = "unfortunateC$i.txt"
-  $fileD = "unfortunateD$i.txt"
-  $fileE = "unfortunateE$i.txt"
+  $fileDesktop = "unfortunateDesktop$i.txt"
   $text = "This is an unfortunate text file $i."
+
+  # Create the text file on the Desktop
+  Set-Content $fileDesktop -Value $text
+  $destination = "$env:USERPROFILE\Desktop\$fileDesktop"
+  Copy-Item $fileDesktop $destination
 
   # Create the text file on the C drive
   Set-Content $fileC -Value $text
   $destination = "C:\$fileC"
   Copy-Item $fileC $destination
 
-  # Create the text file on the D drive
-  Set-Content $fileD -Value $text
-  $destination = "D:\$fileD"
-  Copy-Item $fileD $destination
-
-  # Create the text file on the E drive
-  Set-Content $fileE -Value $text
-  $destination = "E:\$fileE"
-  Copy-Item $fileE $destination
-
   $i++
 }
-
-
-
