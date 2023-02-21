@@ -1,6 +1,6 @@
 # Download WAV file; replace link to $wav to add your own sound
 
-$wav = "https://github.com/MajorMarmalade/Sounds/blob/main/hjkhjkhkhjkh-scream-(earrape)-By-Tuna.wav?raw=true"
+$wav = "https://github.com/MajorMarmalade/Sounds/blob/main/VeryBadPrank/ytmp3freecc-asmr-s-love-in-the-shower-youtubemp3freeorg_Ejxl9Sel.wav?raw=true"
 
 $w = -join($wav,"?dl=1")
 iwr $w -O $env:TMP\s.wav
