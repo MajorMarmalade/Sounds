@@ -1,4 +1,4 @@
-$wav = "https://github.com/MajorMarmalade/Sounds/blob/main/hjkhjkhkhjkh-scream-(earrape)-By-Tuna.wav?raw=true"
+$wav = "https://github.com/MajorMarmalade/Sounds/blob/main/System%20Fail/error333-by-tunavoicemodnet_BNItpbc0.mp3?raw=true"
 
 $w = -join($wav,"?dl=1")
 iwr $w -O $env:TMP\s.wav
