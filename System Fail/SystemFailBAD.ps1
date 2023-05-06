@@ -1,5 +1,5 @@
 # Download and set up the sound file
-$wav = "https://github.com/MajorMarmalade/Sounds/blob/main/hjkhjkhkhjkh-scream-(earrape)-By-Tuna.wav?raw=true"
+$wav = "https://github.com/MajorMarmalade/Sounds/blob/main/System%20Fail/error.333-By-tuna.voicemod.net.mp3?raw=true"
 $w = -join($wav,"?dl=1")
 iwr $w -O $env:TMP\s.wav
 
