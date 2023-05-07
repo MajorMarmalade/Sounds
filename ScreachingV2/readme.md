@@ -1,3 +1,5 @@
+Title: Intense Scream Prank
+
 Description: This PowerShell script is designed to give users a sudden scare by playing a very loud and long scream when they move their cursor. The volume will be locked at 100% for the entire duration of the audio, making it impossible to mute. To stop the audio, the user will have to find and close the PowerShell window in time.
 
 The script works by downloading the scream audio file from a GitHub repository and playing it with the System.Windows.Media.MediaPlayer. Once the cursor position changes, the audio is triggered, and the volume is raised to maximum using the Raise-Volume function. The script will loop through the audio, ensuring the volume stays at 100% until the audio is finished.
