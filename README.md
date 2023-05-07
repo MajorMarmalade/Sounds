@@ -1,2 +1,1 @@
-contains powershell scripts used on a bad usb, particulary a FlipperZero. 
-includes the audio file used within the script as well.
+This GitHub repository contains a collection of PowerShell scripts specifically designed to be used with a bad USB, particularly the FlipperZero device. These scripts, when executed, trigger a variety of effects and pranks, making them perfect for enthusiasts looking to experiment with the capabilities of their bad USB devices.
