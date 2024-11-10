@@ -1,15 +1,3 @@
-# Store the original position of the cursor
-$originalPOS = [System.Windows.Forms.Cursor]::Position
-
-# Loop until the cursor position changes
-while (1) {
-    # Check if the cursor position has changed
-    if ([Windows.Forms.Cursor]::Position -ne $originalPOS) {
-        # If the cursor has moved, exit the loop
-        break
-    }
-}
-
 function Show-ChoiceDialog {
     param (
         [string]$Title,
