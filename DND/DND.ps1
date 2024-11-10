@@ -34,7 +34,7 @@ function Show-ChoiceDialog {
     $form.TopMost = $true
 
     # Set the background image
-    $backgroundImageUrl = "https://raw.githubusercontent.com/MajorMarmalade/Sounds/main/DND/forest.png"
+    $backgroundImageUrl = "https://raw.githubusercontent.com/MajorMarmalade/Sounds/main/DND/background.png"
     $backgroundImageFile = "$env:TEMP\forest.jpg"
 
     if (-Not (Test-Path $backgroundImageFile)) {
