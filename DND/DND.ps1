@@ -25,7 +25,7 @@ function Show-ChoiceDialog {
 
     $form = New-Object System.Windows.Forms.Form
     $form.Text = $Title
-    $form.Size = New-Object System.Drawing.Size(500, 200)
+    $form.Size = New-Object System.Drawing.Size(600, 300)
     $form.StartPosition = "CenterScreen"
     $form.FormBorderStyle = 'FixedDialog'
     $form.MaximizeBox = $false
@@ -33,14 +33,41 @@ function Show-ChoiceDialog {
     $form.ShowInTaskbar = $false
     $form.TopMost = $true
 
+    # Set the background image
+    $backgroundImageUrl = "https://github.com/MajorMarmalade/Sounds/raw/refs/heads/main/DND/forest.jpg"
+    $backgroundImageFile = "$env:TEMP\forest.jpg"
+
+    if (-Not (Test-Path $backgroundImageFile)) {
+        try {
+            Invoke-WebRequest -Uri $backgroundImageUrl -OutFile $backgroundImageFile
+        } catch {
+            # If the image can't be downloaded, proceed without it
+        }
+    }
+
+    if (Test-Path $backgroundImageFile) {
+        $form.BackgroundImage = [System.Drawing.Image]::FromFile($backgroundImageFile)
+        $form.BackgroundImageLayout = 'Stretch'
+    } else {
+        # Set a solid dark green background if image is not available
+        $form.BackColor = 'DarkGreen'
+    }
+
+    # Add the message label directly to the form
     $label = New-Object System.Windows.Forms.Label
-    $label.Location = New-Object System.Drawing.Point(10, 10)
-    $label.Size = New-Object System.Drawing.Size(480, 50)
+    $label.Location = New-Object System.Drawing.Point(20, 20)
+    $label.Size = New-Object System.Drawing.Size(560, 80)
     $label.Text = $Message
+    $label.ForeColor = 'WhiteSmoke'
+    $label.Font = New-Object System.Drawing.Font("Papyrus", 12, [System.Drawing.FontStyle]::Bold)
+    $label.BackColor = [System.Drawing.Color]::FromArgb(180, 0, 0, 0) # Semi-transparent black
+    $label.AutoSize = $false
+    $label.TextAlign = 'MiddleCenter'
+    $label.BorderStyle = 'FixedSingle'
     $form.Controls.Add($label)
 
     $buttons = @()
-    $buttonWidth = 140
+    $buttonWidth = 160
     $buttonHeight = 40
     $spacing = 10
 
@@ -48,7 +75,7 @@ function Show-ChoiceDialog {
 
     $totalButtonWidth = (($buttonWidth + $spacing) * $choiceCount) - $spacing
     $startX = [int](($form.ClientSize.Width - $totalButtonWidth) / 2)
-    $startY = 70
+    $startY = 120
 
     for ($i = 0; $i -lt $choiceCount; $i++) {
         $button = New-Object System.Windows.Forms.Button
@@ -57,6 +84,12 @@ function Show-ChoiceDialog {
         $button.Size = New-Object System.Drawing.Size($buttonWidth, $buttonHeight)
         $button.Text = $Choices[$i]
         $button.Tag = $Choices[$i]
+        $button.Font = New-Object System.Drawing.Font("Papyrus", 10, [System.Drawing.FontStyle]::Regular)
+        $button.ForeColor = 'White'
+        $button.BackColor = [System.Drawing.Color]::FromArgb(180, 0, 0, 0) # Semi-transparent black
+        $button.FlatStyle = 'Flat'
+        $button.FlatAppearance.BorderSize = 1
+        $button.FlatAppearance.BorderColor = 'WhiteSmoke'
 
         # Correct variable scoping in event handler
         $currentButton = $button  # Capture current button in a local variable
@@ -72,6 +105,17 @@ function Show-ChoiceDialog {
         $buttons += $button
     }
 
+    # Adjust button positions to be centered vertically if needed
+    $totalButtonHeight = $buttonHeight
+    $buttonsStartY = $startY
+    $availableHeight = $form.ClientSize.Height - $buttonsStartY - 20
+    if ($availableHeight > $totalButtonHeight) {
+        $startY = $buttonsStartY + [int](($availableHeight - $totalButtonHeight) / 2)
+        foreach ($button in $buttons) {
+            $button.Location = New-Object System.Drawing.Point($button.Location.X, $startY)
+        }
+    }
+
     # Handle form closing without selection
     $form.Add_FormClosing({
         if ($form.DialogResult -ne [System.Windows.Forms.DialogResult]::OK) {
@@ -84,11 +128,64 @@ function Show-ChoiceDialog {
 }
 
 function EndGame($message) {
-    [System.Windows.Forms.MessageBox]::Show($message, "The End")
-    # Stop the music when the game ends
+    # Create a custom message box with the same theme
+    $endForm = New-Object System.Windows.Forms.Form
+    $endForm.Text = "The End"
+    $endForm.Size = New-Object System.Drawing.Size(400, 200)
+    $endForm.StartPosition = "CenterScreen"
+    $endForm.FormBorderStyle = 'FixedDialog'
+    $endForm.MaximizeBox = $false
+    $endForm.MinimizeBox = $false
+    $endForm.ShowInTaskbar = $false
+    $endForm.TopMost = $true
+
+    # Set background
+    if (Test-Path $backgroundImageFile) {
+        $endForm.BackgroundImage = [System.Drawing.Image]::FromFile($backgroundImageFile)
+        $endForm.BackgroundImageLayout = 'Stretch'
+    } else {
+        $endForm.BackColor = 'DarkGreen'
+    }
+
+    # Add the message label directly to the form
+    $label = New-Object System.Windows.Forms.Label
+    $label.Location = New-Object System.Drawing.Point(20, 20)
+    $label.Size = New-Object System.Drawing.Size(360, 80)
+    $label.Text = $message
+    $label.ForeColor = 'WhiteSmoke'
+    $label.Font = New-Object System.Drawing.Font("Papyrus", 12, [System.Drawing.FontStyle]::Bold)
+    $label.BackColor = [System.Drawing.Color]::FromArgb(180, 0, 0, 0) # Semi-transparent black
+    $label.AutoSize = $false
+    $label.TextAlign = 'MiddleCenter'
+    $label.BorderStyle = 'FixedSingle'
+    $endForm.Controls.Add($label)
+
+    $okButton = New-Object System.Windows.Forms.Button
+    $okButton.Location = New-Object System.Drawing.Point(160, 120)
+    $okButton.Size = New-Object System.Drawing.Size(80, 30)
+    $okButton.Text = "OK"
+    $okButton.Font = New-Object System.Drawing.Font("Papyrus", 10, [System.Drawing.FontStyle]::Regular)
+    $okButton.ForeColor = 'White'
+    $okButton.BackColor = [System.Drawing.Color]::FromArgb(180, 0, 0, 0)
+    $okButton.FlatStyle = 'Flat'
+    $okButton.FlatAppearance.BorderSize = 1
+    $okButton.FlatAppearance.BorderColor = 'WhiteSmoke'
+
+    $okButton.Add_Click({
+        $endForm.DialogResult = [System.Windows.Forms.DialogResult]::OK
+        $endForm.Close()
+    })
+
+    $endForm.Controls.Add($okButton)
+
+    # Show the end game dialog and wait for the user to close it
+    $endForm.ShowDialog() | Out-Null
+
+    # Stop the music after the final window is closed
     if ($global:player -ne $null) {
         $global:player.Stop()
     }
+
     exit
 }
 
@@ -303,13 +400,13 @@ while ($true) {
             }
 
             switch ($result) {
-                "Explore the hidden passage" { $gameState = "hiddenPassageCellar" }
+                "Explore the hidden passage" { $gameState = "hiddenPassage" }
                 "Take an artifact" { $gameState = "takeArtifact" }
                 "Leave the cellar" { $gameState = "aroundHouse" }
             }
         }
 
-        "hiddenPassageCellar" {
+        "hiddenPassage" {
             EndGame "You follow the hidden passage and find yourself in a secret chamber filled with treasure. You have uncovered a great secret but are now trapped forever."
         }
 
@@ -496,5 +593,3 @@ while ($true) {
         }
     }
 }
-
-# Note: The EndGame function will stop the music when the game ends
