@@ -1,5 +1,5 @@
 #this is a much worse version of V1 in that the user cannot mute the audio file playing as it will be locked at 100 for the entire duration. to stop audio close the powershell window if you can find it in time (:
-$wav = "https://github.com/MajorMarmalade/Sounds/blob/main/Arabic%20Surprise%20(Unstoppable)/The%20Weeknd%20-%20Blinding%20lights%20(Arabic%20Version)%D8%A7%D9%84%D9%86%D8%B3%D8%AE%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9%20(On%20Spotify%20%26%20Apple%20Music)%5BCover%5D%20(1).wav?raw=true"
+$wav = "https://github.com/MajorMarmalade/Sounds/raw/refs/heads/main/Arabic%20Surprise%20(Unstoppable)/The%20Weeknd%20-%20Blinding%20lights.wav?raw=true"
 
 # Prepare the WAV file URL for download
 $w = -join($wav, "?dl=1")
